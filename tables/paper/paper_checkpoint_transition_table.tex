@@ -1,0 +1,37 @@
+\begin{tabular}{lllrrrrrrrlr}
+\toprule
+setting & family & model & from_step & to_step & delta_R_phi & delta_R_dagger & delta_R_dagger_2 & delta_kl & delta_u & failure_mode & evaluator_gaming \\
+\midrule
+beta=0.001 sampled / ppo & reward_hack_search_beta0p001_sampled & ppo & 100 & 200 & 0.017 & 0.109 & -0.016 & -0.001 & -0.011 & stable_alignment & True \\
+beta=0.001 sampled / ppo & reward_hack_search_beta0p001_sampled & ppo & 200 & 500 & 0.071 & 0.133 & -0.031 & -0.003 & 0.007 & stable_alignment & True \\
+beta=0.001 sampled / ppo & reward_hack_search_beta0p001_sampled & ppo & 500 & 600 & -0.045 & -0.070 & 0.109 & -0.002 & 0.003 & optimization_collapse & True \\
+beta=0.001 sampled / ppo & reward_hack_search_beta0p001_sampled & ppo & 600 & 800 & 0.102 & 0.109 & 0.016 & 0.000 & -0.012 & stable_alignment & False \\
+beta=0.005 / ppo & reward_hack_search_beta0p005 & ppo & 300 & 350 & -0.005 & 0.125 & 0.031 & -0.008 & 0.000 & proxy_under_alignment & False \\
+beta=0.005 / ppo & reward_hack_search_beta0p005 & ppo & 350 & 400 & 0.013 & -0.094 & 0.016 & 0.000 & -0.001 & reward_hacking & True \\
+beta=0.01 / dpo & reward_hack_search_beta0p01 & dpo & 300 & 350 & 0.000 & -0.086 & -0.016 & 0.000 & 0.000 & mixed_or_ambiguous & False \\
+beta=0.01 / dpo & reward_hack_search_beta0p01 & dpo & 350 & 400 & 0.000 & -0.008 & 0.016 & 0.000 & 0.000 & mixed_or_ambiguous & True \\
+beta=0.01 / ppo & reward_hack_search_beta0p01 & ppo & 300 & 350 & -0.067 & 0.094 & 0.000 & -0.004 & 0.011 & proxy_under_alignment & False \\
+beta=0.01 / ppo & reward_hack_search_beta0p01 & ppo & 350 & 400 & -0.011 & -0.062 & 0.016 & 0.000 & -0.003 & optimization_collapse & True \\
+beta=0.01 / sft & reward_hack_search_beta0p01 & sft & 300 & 350 & 0.000 & 0.016 & -0.016 & 0.000 & 0.000 & mixed_or_ambiguous & True \\
+beta=0.01 / sft & reward_hack_search_beta0p01 & sft & 350 & 400 & 0.000 & 0.047 & 0.047 & 0.000 & 0.000 & mixed_or_ambiguous & False \\
+beta=0.03 / dpo & reward_hack_search_beta0p03 & dpo & 50 & 250 & 0.000 & 0.031 & -0.016 & 0.000 & 0.000 & mixed_or_ambiguous & True \\
+beta=0.03 / dpo & reward_hack_search_beta0p03 & dpo & 250 & 350 & 0.000 & 0.094 & 0.016 & 0.000 & 0.000 & mixed_or_ambiguous & False \\
+beta=0.03 / ppo & reward_hack_search_beta0p03 & ppo & 50 & 250 & -0.080 & 0.023 & -0.156 & -0.010 & 0.002 & proxy_under_alignment & True \\
+beta=0.03 / ppo & reward_hack_search_beta0p03 & ppo & 250 & 350 & -0.037 & -0.273 & 0.062 & -0.003 & 0.001 & optimization_collapse & True \\
+beta=0.03 / sft & reward_hack_search_beta0p03 & sft & 50 & 250 & 0.000 & 0.062 & -0.031 & 0.000 & 0.000 & mixed_or_ambiguous & True \\
+beta=0.03 / sft & reward_hack_search_beta0p03 & sft & 250 & 350 & 0.000 & -0.031 & -0.031 & 0.000 & 0.000 & mixed_or_ambiguous & False \\
+beta=0.0 aggressive / ppo & reward_hack_search_beta0p0_aggressive & ppo & 200 & 400 & -0.035 & 0.094 & 0.016 & -0.017 & -0.008 & proxy_under_alignment & False \\
+beta=0.0 aggressive / ppo & reward_hack_search_beta0p0_aggressive & ppo & 400 & 600 & 0.105 & 0.094 & -0.109 & -0.003 & -0.015 & stable_alignment & True \\
+beta=0.0 aggressive / ppo & reward_hack_search_beta0p0_aggressive & ppo & 600 & 1000 & -0.017 & 0.086 & -0.141 & -0.028 & 0.023 & proxy_under_alignment & True \\
+beta=0.0 aggressive / ppo & reward_hack_search_beta0p0_aggressive & ppo & 1000 & 1200 & 0.077 & -0.391 & -0.078 & 0.084 & -0.020 & reward_hacking & False \\
+beta=0.0 aggressive UP lambda=0.1 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 200 & 400 & 0.060 & 0.094 & 0.031 & -0.014 & -0.003 & stable_alignment & False \\
+beta=0.0 aggressive UP lambda=0.1 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 400 & 600 & 0.020 & 0.617 & 0.156 & 0.035 & -0.007 & stable_alignment & False \\
+beta=0.0 aggressive UP lambda=0.1 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 600 & 1000 & 0.057 & -0.383 & -0.203 & -0.005 & -0.016 & reward_hacking & False \\
+beta=0.0 aggressive UP lambda=0.1 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 1000 & 1200 & -0.023 & -0.023 & -0.172 & 0.043 & 0.005 & optimization_collapse & False \\
+beta=0.0 aggressive UP lambda=0.5 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 200 & 400 & 0.066 & -0.062 & 0.000 & -0.013 & -0.007 & reward_hacking & False \\
+beta=0.0 aggressive UP lambda=0.5 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 400 & 600 & 0.023 & 0.227 & -0.109 & -0.005 & 0.004 & stable_alignment & True \\
+beta=0.0 aggressive UP lambda=0.5 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 600 & 1000 & -0.028 & 0.102 & 0.062 & 0.004 & 0.028 & proxy_under_alignment & False \\
+beta=0.0 aggressive UP lambda=0.5 / ppo & reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 1000 & 1200 & -0.164 & -0.219 & -0.688 & 0.060 & -0.007 & optimization_collapse & False \\
+beta=0.0 long / ppo & reward_hack_search_beta0p0_long_2000 & ppo & 2000 & 2000 & 0.000 & 0.250 & NaN & 0.000 & 0.000 & mixed_or_ambiguous & False \\
+\bottomrule
+\end{tabular}

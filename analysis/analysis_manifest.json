@@ -1,0 +1,22 @@
+{
+  "early_warning_modeling": {
+    "n_rows": 1920,
+    "n_reward_hacking": 127
+  },
+  "prompt_localization": {
+    "n_prompts": 64,
+    "n_repeated_reward_hacking_prompts": 38,
+    "max_reward_hacking_count": 5
+  },
+  "mitigation_comparison": {
+    "row_level_baseline_reward_hacking_share": 0.14453125
+  },
+  "judge_disagreement": {
+    "checkpoint_evaluator_gaming_share": 0.45161290322580644,
+    "row_level_evaluator_gaming_share": 0.0390625
+  },
+  "checkpoint_vs_row_ablation": {
+    "settings_with_hidden_localized_reward_hacking": 3,
+    "total_settings": 12
+  }
+}

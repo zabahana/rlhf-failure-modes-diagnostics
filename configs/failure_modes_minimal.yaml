@@ -1,0 +1,40 @@
+# Minimal experiment plan for RLHF failure-mode diagnostics
+base_model: openai-community/gpt2
+dataset: anthropic_hh_rlhf
+seeds: [42, 43, 44]
+evaluation_prompts: 512
+checkpoint_steps: [200, 400, 600, 800, 1000, 1200]
+methods:
+  - name: ppo_beta_0
+    type: ppo
+    beta_kl: 0.0
+  - name: ppo_beta_low
+    type: ppo
+    beta_kl: 0.001
+  - name: ppo_beta_medium
+    type: ppo
+    beta_kl: 0.01
+  - name: ppo_beta_high
+    type: ppo
+    beta_kl: 0.03
+  - name: up_ppo_lambda_0p1
+    type: up_ppo
+    beta_kl: 0.0
+    up_lambda: 0.1
+  - name: dpo
+    type: dpo
+judges:
+  primary: anthropic
+  secondary: openai
+metrics:
+  - R_phi
+  - R_dagger
+  - R_2_dagger
+  - bar_R_dagger
+  - uncertainty_u
+  - kl_sft
+  - response_length
+  - repetition
+  - entropy
+  - lexical_diversity
+  - judge_disagreement

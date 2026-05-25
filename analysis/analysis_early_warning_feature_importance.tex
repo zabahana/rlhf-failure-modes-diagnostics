@@ -1,0 +1,63 @@
+\begin{tabular}{lllrr}
+\toprule
+feature_set & model & feature & importance & abs_importance \\
+\midrule
+pre_state_only & logistic_regression & prev_R_dagger & 0.959 & 0.959 \\
+pre_state_only & logistic_regression & prev_generated_word_count & 0.484 & 0.484 \\
+pre_state_only & logistic_regression & prev_distinct_1_ratio & 0.447 & 0.447 \\
+pre_state_only & logistic_regression & prev_R_phi & -0.432 & 0.432 \\
+pre_state_only & logistic_regression & prev_max_3gram_repetition & -0.339 & 0.339 \\
+pre_state_only & logistic_regression & prev_distinct_2_ratio & -0.285 & 0.285 \\
+pre_state_only & logistic_regression & prev_mean_kl_sft & -0.276 & 0.276 \\
+pre_state_only & logistic_regression & prev_judge_disagreement_abs & -0.210 & 0.210 \\
+pre_state_only & logistic_regression & prev_u & -0.163 & 0.163 \\
+pre_state_only & logistic_regression & prev_R_dagger_2 & -0.158 & 0.158 \\
+pre_state_only & random_forest & prev_R_dagger & 0.171 & 0.171 \\
+pre_state_only & random_forest & prev_mean_kl_sft & 0.148 & 0.148 \\
+pre_state_only & random_forest & prev_R_phi & 0.144 & 0.144 \\
+pre_state_only & random_forest & prev_generated_word_count & 0.142 & 0.142 \\
+pre_state_only & random_forest & prev_distinct_1_ratio & 0.107 & 0.107 \\
+pre_state_only & random_forest & prev_distinct_2_ratio & 0.100 & 0.100 \\
+pre_state_only & random_forest & prev_u & 0.098 & 0.098 \\
+pre_state_only & random_forest & prev_R_dagger_2 & 0.041 & 0.041 \\
+pre_state_only & random_forest & prev_judge_disagreement_abs & 0.026 & 0.026 \\
+pre_state_only & random_forest & prev_max_3gram_repetition & 0.022 & 0.022 \\
+pre_state_only & xgboost & prev_R_dagger & 0.201 & 0.201 \\
+pre_state_only & xgboost & prev_generated_word_count & 0.109 & 0.109 \\
+pre_state_only & xgboost & prev_max_3gram_repetition & 0.104 & 0.104 \\
+pre_state_only & xgboost & prev_mean_kl_sft & 0.103 & 0.103 \\
+pre_state_only & xgboost & prev_R_phi & 0.103 & 0.103 \\
+pre_state_only & xgboost & prev_R_dagger_2 & 0.087 & 0.087 \\
+pre_state_only & xgboost & prev_distinct_1_ratio & 0.082 & 0.082 \\
+pre_state_only & xgboost & prev_distinct_2_ratio & 0.081 & 0.081 \\
+pre_state_only & xgboost & prev_u & 0.072 & 0.072 \\
+pre_state_only & xgboost & prev_judge_disagreement_abs & 0.058 & 0.058 \\
+transition_diagnostics & logistic_regression & delta_R_dagger & -3.613 & 3.613 \\
+transition_diagnostics & logistic_regression & delta_R_phi & 1.761 & 1.761 \\
+transition_diagnostics & logistic_regression & delta_R_dagger_2 & -0.376 & 0.376 \\
+transition_diagnostics & logistic_regression & to_distinct_2_ratio & 0.173 & 0.173 \\
+transition_diagnostics & logistic_regression & to_max_3gram_repetition & 0.144 & 0.144 \\
+transition_diagnostics & logistic_regression & delta_u & -0.083 & 0.083 \\
+transition_diagnostics & logistic_regression & to_distinct_1_ratio & 0.063 & 0.063 \\
+transition_diagnostics & logistic_regression & to_generated_word_count & 0.048 & 0.048 \\
+transition_diagnostics & logistic_regression & delta_kl & -0.005 & 0.005 \\
+transition_diagnostics & random_forest & delta_R_dagger & 0.512 & 0.512 \\
+transition_diagnostics & random_forest & delta_R_phi & 0.349 & 0.349 \\
+transition_diagnostics & random_forest & delta_u & 0.053 & 0.053 \\
+transition_diagnostics & random_forest & delta_R_dagger_2 & 0.033 & 0.033 \\
+transition_diagnostics & random_forest & delta_kl & 0.021 & 0.021 \\
+transition_diagnostics & random_forest & to_generated_word_count & 0.013 & 0.013 \\
+transition_diagnostics & random_forest & to_distinct_2_ratio & 0.010 & 0.010 \\
+transition_diagnostics & random_forest & to_distinct_1_ratio & 0.008 & 0.008 \\
+transition_diagnostics & random_forest & to_max_3gram_repetition & 0.002 & 0.002 \\
+transition_diagnostics & xgboost & delta_R_dagger & 0.677 & 0.677 \\
+transition_diagnostics & xgboost & delta_R_phi & 0.170 & 0.170 \\
+transition_diagnostics & xgboost & to_distinct_1_ratio & 0.066 & 0.066 \\
+transition_diagnostics & xgboost & delta_u & 0.047 & 0.047 \\
+transition_diagnostics & xgboost & delta_R_dagger_2 & 0.033 & 0.033 \\
+transition_diagnostics & xgboost & to_distinct_2_ratio & 0.006 & 0.006 \\
+transition_diagnostics & xgboost & to_generated_word_count & 0.001 & 0.001 \\
+transition_diagnostics & xgboost & delta_kl & 0.001 & 0.001 \\
+transition_diagnostics & xgboost & to_max_3gram_repetition & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}

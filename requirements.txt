@@ -1,0 +1,19 @@
+# Colab: pip install -r requirements.txt
+# Pin loosely so Colab can resolve; upgrade torch if needed for your runtime.
+torch>=2.1.0
+transformers>=4.38.0
+datasets>=2.16.0
+accelerate>=0.27.0
+trl>=0.8.0
+peft>=0.10.0
+sentencepiece
+protobuf
+tqdm
+numpy
+scipy
+python-dotenv>=1.0.0
+anthropic>=0.40.0
+openai>=1.0.0
+matplotlib>=3.7.0
+gradio>=4.44.0
+bitsandbytes; platform_system != "Windows"

@@ -1,0 +1,12 @@
+unit,failure_mode,total,evaluator_gaming,mean_judge_delta_gap,median_judge_delta_gap,evaluator_gaming_share
+row_level,proxy_under_alignment,122,21,1.5163934426229508,1.0,0.1721311475409836
+row_level,stable_alignment,100,15,1.275,1.0,0.15
+row_level,reward_hacking,127,15,1.1377952755905512,1.0,0.11811023622047244
+row_level,optimization_collapse,99,5,0.9040404040404041,1.0,0.050505050505050504
+row_level,mixed_or_ambiguous,724,19,0.800414364640884,1.0,0.026243093922651933
+row_level,conservative_stagnation,748,0,0.16711229946524064,0.0,0.0
+checkpoint,optimization_collapse,5,3,0.2421875,0.1796875,0.6
+checkpoint,stable_alignment,7,4,0.20647321428571427,0.1640625,0.5714285714285714
+checkpoint,mixed_or_ambiguous,9,4,0.04296875,0.0390625,0.4444444444444444
+checkpoint,proxy_under_alignment,6,2,0.11848958333333333,0.09375,0.3333333333333333
+checkpoint,reward_hacking,4,1,0.166015625,0.14453125,0.25

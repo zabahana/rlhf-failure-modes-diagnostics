@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.deps/
+.DS_Store
+
+# Secrets
+.env
+*.key
+credentials*.json
+
+# LaTeX build byproducts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Large training artifacts/checkpoints
+artifacts/
+artifacts_proposal_min/
+checkpoints/
+models/
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.jsonl

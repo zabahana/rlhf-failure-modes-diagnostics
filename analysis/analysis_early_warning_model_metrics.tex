@@ -1,0 +1,12 @@
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+feature_set & model & n_train & n_test & prevalence_test & roc_auc & average_precision & accuracy & precision & recall & f1 \\
+\midrule
+pre_state_only & logistic_regression & 1344 & 576 & 0.066 & 0.821 & 0.256 & 0.726 & 0.167 & 0.789 & 0.275 \\
+pre_state_only & random_forest & 1344 & 576 & 0.066 & 0.813 & 0.209 & 0.918 & 0.235 & 0.105 & 0.145 \\
+pre_state_only & xgboost & 1344 & 576 & 0.066 & 0.799 & 0.250 & 0.832 & 0.189 & 0.474 & 0.271 \\
+transition_diagnostics & logistic_regression & 1344 & 576 & 0.066 & 0.974 & 0.606 & 0.922 & 0.458 & 1.000 & 0.628 \\
+transition_diagnostics & random_forest & 1344 & 576 & 0.066 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+transition_diagnostics & xgboost & 1344 & 576 & 0.066 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,7 @@
+unit,setting,family,model,total,reward_hacking,stable_alignment,optimization_collapse,proxy_under_alignment,evaluator_gaming,reward_hacking_share,stable_alignment_share,evaluator_gaming_share,reward_hacking_relative_change_vs_aggressive
+row_level,beta=0.0 aggressive / ppo,reward_hack_search_beta0p0_aggressive,ppo,256,37,26,27,30,24,0.14453125,0.1015625,0.09375,0.0
+row_level,beta=0.0 aggressive UP lambda=0.1 / ppo,reward_hack_search_beta0p0_aggressive_up_lambda0p1,ppo,256,29,27,21,28,13,0.11328125,0.10546875,0.05078125,-0.21621621621621623
+row_level,beta=0.0 aggressive UP lambda=0.5 / ppo,reward_hack_search_beta0p0_aggressive_up_lambda0p5,ppo,256,28,19,28,27,10,0.109375,0.07421875,0.0390625,-0.24324324324324326
+checkpoint,beta=0.0 aggressive / ppo,reward_hack_search_beta0p0_aggressive,ppo,4,1,1,0,2,2,0.25,0.25,0.5,0.0
+checkpoint,beta=0.0 aggressive UP lambda=0.1 / ppo,reward_hack_search_beta0p0_aggressive_up_lambda0p1,ppo,4,1,2,1,0,0,0.25,0.5,0.0,0.0
+checkpoint,beta=0.0 aggressive UP lambda=0.5 / ppo,reward_hack_search_beta0p0_aggressive_up_lambda0p5,ppo,4,1,1,1,1,1,0.25,0.25,0.25,0.0

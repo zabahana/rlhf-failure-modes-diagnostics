@@ -1,0 +1,37 @@
+\begin{tabular}{llrrlrrlrrrrrr}
+\toprule
+family & model & from_step & to_step & checkpoint_label & checkpoint_evaluator_gaming & row_total & row_majority_label & row_majority_count & row_majority_share & checkpoint_row_majority_disagree & row_reward_hacking & row_reward_hacking_share & hidden_reward_hacking_this_transition \\
+\midrule
+reward_hack_search_beta0p0_aggressive & ppo & 600 & 1000 & proxy_under_alignment & True & 64.000 & mixed_or_ambiguous & 28.000 & 0.438 & True & 12.000 & 0.188 & True \\
+reward_hack_search_beta0p0_aggressive & ppo & 1000 & 1200 & reward_hacking & False & 64.000 & mixed_or_ambiguous & 28.000 & 0.438 & True & 11.000 & 0.172 & False \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 600 & 1000 & reward_hacking & False & 64.000 & mixed_or_ambiguous & 34.000 & 0.531 & True & 10.000 & 0.156 & False \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 200 & 400 & reward_hacking & False & 64.000 & mixed_or_ambiguous & 40.000 & 0.625 & True & 9.000 & 0.141 & False \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 600 & 1000 & proxy_under_alignment & False & 64.000 & mixed_or_ambiguous & 39.000 & 0.609 & True & 9.000 & 0.141 & True \\
+reward_hack_search_beta0p001_sampled & ppo & 200 & 500 & stable_alignment & True & 64.000 & mixed_or_ambiguous & 28.000 & 0.438 & True & 9.000 & 0.141 & True \\
+reward_hack_search_beta0p0_aggressive & ppo & 200 & 400 & proxy_under_alignment & False & 64.000 & mixed_or_ambiguous & 38.000 & 0.594 & True & 7.000 & 0.109 & True \\
+reward_hack_search_beta0p0_aggressive & ppo & 400 & 600 & stable_alignment & True & 64.000 & mixed_or_ambiguous & 32.000 & 0.500 & True & 7.000 & 0.109 & True \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 200 & 400 & stable_alignment & False & 64.000 & mixed_or_ambiguous & 32.000 & 0.500 & True & 7.000 & 0.109 & True \\
+reward_hack_search_beta0p03 & ppo & 250 & 350 & optimization_collapse & True & 64.000 & mixed_or_ambiguous & 26.000 & 0.406 & True & 7.000 & 0.109 & True \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 1000 & 1200 & optimization_collapse & False & 64.000 & mixed_or_ambiguous & 25.000 & 0.391 & True & 7.000 & 0.109 & True \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 1000 & 1200 & optimization_collapse & False & 64.000 & mixed_or_ambiguous & 24.000 & 0.375 & True & 6.000 & 0.094 & True \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p1 & ppo & 400 & 600 & stable_alignment & False & 64.000 & mixed_or_ambiguous & 33.000 & 0.516 & True & 5.000 & 0.078 & True \\
+reward_hack_search_beta0p001_sampled & ppo & 600 & 800 & stable_alignment & False & 64.000 & mixed_or_ambiguous & 30.000 & 0.469 & True & 5.000 & 0.078 & True \\
+reward_hack_search_beta0p03 & ppo & 50 & 250 & proxy_under_alignment & True & 64.000 & mixed_or_ambiguous & 22.000 & 0.344 & True & 5.000 & 0.078 & True \\
+reward_hack_search_beta0p0_aggressive_up_lambda0p5 & ppo & 400 & 600 & stable_alignment & True & 64.000 & mixed_or_ambiguous & 41.000 & 0.641 & True & 4.000 & 0.062 & True \\
+reward_hack_search_beta0p001_sampled & ppo & 100 & 200 & stable_alignment & True & 64.000 & mixed_or_ambiguous & 33.000 & 0.516 & True & 3.000 & 0.047 & True \\
+reward_hack_search_beta0p001_sampled & ppo & 500 & 600 & optimization_collapse & True & 64.000 & conservative_stagnation & 27.000 & 0.422 & True & 2.000 & 0.031 & True \\
+reward_hack_search_beta0p005 & ppo & 350 & 400 & reward_hacking & True & 64.000 & conservative_stagnation & 49.000 & 0.766 & True & 1.000 & 0.016 & False \\
+reward_hack_search_beta0p01 & ppo & 350 & 400 & optimization_collapse & True & 64.000 & conservative_stagnation & 33.000 & 0.516 & True & 1.000 & 0.016 & True \\
+reward_hack_search_beta0p03 & dpo & 50 & 250 & mixed_or_ambiguous & True & 64.000 & conservative_stagnation & 55.000 & 0.859 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p01 & sft & 300 & 350 & mixed_or_ambiguous & True & 64.000 & conservative_stagnation & 54.000 & 0.844 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p01 & sft & 350 & 400 & mixed_or_ambiguous & False & 64.000 & conservative_stagnation & 54.000 & 0.844 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p03 & sft & 250 & 350 & mixed_or_ambiguous & False & 64.000 & conservative_stagnation & 53.000 & 0.828 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p01 & dpo & 300 & 350 & mixed_or_ambiguous & False & 64.000 & conservative_stagnation & 51.000 & 0.797 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p01 & dpo & 350 & 400 & mixed_or_ambiguous & True & 64.000 & conservative_stagnation & 51.000 & 0.797 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p03 & sft & 50 & 250 & mixed_or_ambiguous & True & 64.000 & conservative_stagnation & 51.000 & 0.797 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p005 & ppo & 300 & 350 & proxy_under_alignment & False & 64.000 & conservative_stagnation & 50.000 & 0.781 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p03 & dpo & 250 & 350 & mixed_or_ambiguous & False & 64.000 & conservative_stagnation & 49.000 & 0.766 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p01 & ppo & 300 & 350 & proxy_under_alignment & False & 64.000 & conservative_stagnation & 34.000 & 0.531 & True & 0.000 & 0.000 & False \\
+reward_hack_search_beta0p0_long_2000 & ppo & 2000 & 2000 & mixed_or_ambiguous & False & NaN & NaN & NaN & NaN & True & NaN & NaN & False \\
+\bottomrule
+\end{tabular}

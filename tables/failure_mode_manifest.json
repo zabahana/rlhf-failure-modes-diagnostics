@@ -1,0 +1,16 @@
+{
+  "source": "/Users/zelalemabahana/reward-hacking-RLHF/code/artifacts_proposal_min/eval",
+  "out_dir": "/Users/zelalemabahana/rlhf-failure-modes-diagnostics/tables",
+  "n_checkpoint_rows": 61,
+  "n_example_rows": 9280,
+  "n_checkpoint_transitions": 31,
+  "n_row_level_transitions": 1920,
+  "outputs": [
+    "checkpoint_metrics.csv",
+    "rollout_example_metrics.csv",
+    "checkpoint_failure_modes.csv",
+    "row_level_failure_modes.csv",
+    "failure_mode_summary.csv",
+    "early_warning_candidates.csv"
+  ]
+}

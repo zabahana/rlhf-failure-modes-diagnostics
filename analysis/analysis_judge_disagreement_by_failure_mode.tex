@@ -1,0 +1,17 @@
+\begin{tabular}{llrrrrr}
+\toprule
+unit & failure_mode & total & evaluator_gaming & mean_judge_delta_gap & median_judge_delta_gap & evaluator_gaming_share \\
+\midrule
+row_level & proxy_under_alignment & 122 & 21 & 1.516 & 1.000 & 0.172 \\
+row_level & stable_alignment & 100 & 15 & 1.275 & 1.000 & 0.150 \\
+row_level & reward_hacking & 127 & 15 & 1.138 & 1.000 & 0.118 \\
+row_level & optimization_collapse & 99 & 5 & 0.904 & 1.000 & 0.051 \\
+row_level & mixed_or_ambiguous & 724 & 19 & 0.800 & 1.000 & 0.026 \\
+row_level & conservative_stagnation & 748 & 0 & 0.167 & 0.000 & 0.000 \\
+checkpoint & optimization_collapse & 5 & 3 & 0.242 & 0.180 & 0.600 \\
+checkpoint & stable_alignment & 7 & 4 & 0.206 & 0.164 & 0.571 \\
+checkpoint & mixed_or_ambiguous & 9 & 4 & 0.043 & 0.039 & 0.444 \\
+checkpoint & proxy_under_alignment & 6 & 2 & 0.118 & 0.094 & 0.333 \\
+checkpoint & reward_hacking & 4 & 1 & 0.166 & 0.145 & 0.250 \\
+\bottomrule
+\end{tabular}
