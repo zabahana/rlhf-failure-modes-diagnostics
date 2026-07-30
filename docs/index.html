@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="When RLHF Fails: a mechanistic study of reward hacking, collapse, judge disagreement, and early-warning diagnostics in RLHF training.">
+  <title>When RLHF Fails</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a33;
+      --panel-2: #17213e;
+      --text: #f3f6ff;
+      --muted: #b9c3da;
+      --accent: #64d2ff;
+      --accent-2: #92f2bd;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(100, 210, 255, 0.16), transparent 36rem),
+        radial-gradient(circle at top right, rgba(146, 242, 189, 0.12), transparent 32rem),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 34px 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 16, 32, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 86px 0 58px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent-2);
+      background: rgba(146, 242, 189, 0.08);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 22px 0 18px;
+      font-size: clamp(2.5rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+    }
+
+    .subtitle {
+      max-width: 850px;
+      font-size: clamp(1.12rem, 2vw, 1.42rem);
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 750;
+    }
+
+    .button.primary {
+      color: #06111f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 0;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .section-lead {
+      max-width: 850px;
+      color: var(--muted);
+      margin: 0 0 26px;
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .figure-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .figure-card img {
+      display: block;
+      width: 100%;
+      background: #fff;
+    }
+
+    figcaption {
+      padding: 16px 18px 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .taxonomy {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      font-size: 0.95rem;
+    }
+
+    .taxonomy th,
+    .taxonomy td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .taxonomy th {
+      color: var(--accent-2);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .taxonomy td {
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      color: #e8efff;
+      background: #070b16;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      padding: 42px 0 54px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 860px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .grid.three,
+      .grid.two {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">When RLHF Fails</a>
+        <div class="nav-links">
+          <a href="#paper">Paper</a>
+          <a href="#findings">Findings</a>
+          <a href="#figures">Figures</a>
+          <a href="#code">Code</a>
+          <a href="#citation">Citation</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="kicker">RLHF safety diagnostics</span>
+        <h1>When RLHF Fails</h1>
+        <p class="subtitle">
+          A mechanistic taxonomy of reward hacking, optimization collapse, judge disagreement,
+          and early-warning signals in RLHF training dynamics.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://arxiv.org/abs/2606.03238">Read the Paper</a>
+          <a class="button" href="https://rlhf-failures.zelalem.ai/">Try the Live Demo</a>
+          <a class="button" href="https://github.com/zabahana/rlhf-failure-modes-diagnostics">View Code</a>
+        </div>
+        <div class="badges">
+          <span class="badge">arXiv:2606.03238</span>
+          <span class="badge">PPO / UP-PPO / DPO</span>
+          <span class="badge">LLM-as-judge diagnostics</span>
+          <span class="badge">Prompt-level localization</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="paper">
+      <div class="container">
+        <h2 class="section-title">Paper Overview</h2>
+        <p class="section-lead">
+          RLHF evaluation should track how failures emerge, where they localize, and which
+          warning signals appear before external quality degrades. This study uses a compact
+          RLHF pipeline with PPO, DPO, uncertainty-penalized PPO, reward-model uncertainty,
+          approximate policy drift, diversity and repetition diagnostics, and two external LLM judges.
+        </p>
+        <div class="grid three">
+          <article class="card">
+            <h3>Transition-Level Taxonomy</h3>
+            <p>Matched checkpoint and prompt-level transitions are classified by how learned reward and judge scores move.</p>
+          </article>
+          <article class="card">
+            <h3>Localized Failures</h3>
+            <p>Prompt-level rows expose reward hacking and judge disagreement that aggregate checkpoint averages can hide.</p>
+          </article>
+          <article class="card">
+            <h3>Early-Warning Diagnostics</h3>
+            <p>Pre-transition features partially anticipate future localized reward hacking and can prioritize review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="findings">
+      <div class="container">
+        <h2 class="section-title">Key Findings</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Aggressive PPO creates the clearest localized signal.</h3>
+            <p>Reward hacking appears most clearly when learned reward improves while the anchor judge score declines.</p>
+          </div>
+          <div class="card">
+            <h3>UP-PPO reduces but does not eliminate failures.</h3>
+            <p>Uncertainty penalties shift the failure distribution, but remaining failures show why mitigation claims should be distributional.</p>
+          </div>
+          <div class="card">
+            <h3>Checkpoint averages are not enough.</h3>
+            <p>Aggregate metrics can look benign while individual prompts degrade under proxy pressure.</p>
+          </div>
+          <div class="card">
+            <h3>Judge disagreement is a measurement warning.</h3>
+            <p>Two judges moving in opposite directions indicates evaluator-dependent quality movement rather than a single ground-truth score.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Failure-Mode Taxonomy</h2>
+        <p class="section-lead">The taxonomy is intentionally directional and auditable.</p>
+        <table class="taxonomy">
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Directional Signature</th>
+              <th>Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Stable alignment</td><td>Reward up, judge up</td><td>Proxy and external quality improve together.</td></tr>
+            <tr><td>Reward hacking</td><td>Reward up, judge down</td><td>The learned reward improves while judged quality falls.</td></tr>
+            <tr><td>Optimization collapse</td><td>Reward down, judge down</td><td>Optimization degrades both signals.</td></tr>
+            <tr><td>Proxy under-alignment</td><td>Reward down, judge up</td><td>External quality improves despite proxy decline.</td></tr>
+            <tr><td>Conservative stagnation</td><td>Both near zero</td><td>Little measurable transition movement.</td></tr>
+            <tr><td>Judge disagreement</td><td>Two judges move oppositely</td><td>The evaluation signal is judge-dependent.</td></tr>
+            <tr><td>Mixed/ambiguous</td><td>Otherwise</td><td>The transition does not fit a strict quadrant.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="figures">
+      <div class="container">
+        <h2 class="section-title">Figures</h2>
+        <p class="section-lead">Selected figures from the paper and analysis pipeline.</p>
+        <div class="grid two">
+          <figure class="card figure-card">
+            <img src="assets/fig_proxy_judge_delta_scatter.png" alt="Proxy-judge delta geometry">
+            <figcaption>Proxy-judge delta geometry separates reward hacking from collapse, proxy under-alignment, and stable alignment.</figcaption>
+          </figure>
+          <figure class="card figure-card">
+            <img src="assets/fig_row_level_failure_mode_shares.png" alt="Row-level failure mode shares">
+            <figcaption>Row-level diagnostics reveal localized failures that checkpoint averages can hide.</figcaption>
+          </figure>
+          <figure class="card figure-card">
+            <img src="assets/analysis_temporal_metric_trajectories.png" alt="Temporal metric trajectories">
+            <figcaption>Failure signatures emerge over training time across PPO-family checkpoints.</figcaption>
+          </figure>
+          <figure class="card figure-card">
+            <img src="assets/analysis_mitigation_comparison.png" alt="UP-PPO mitigation comparison">
+            <figcaption>UP-PPO reduces observed localized reward-hacking and judge-disagreement shares in the controlled pipeline.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="code">
+      <div class="container">
+        <h2 class="section-title">Code and Reproducibility</h2>
+        <p class="section-lead">
+          The repository includes training, evaluation, table-generation, figure-generation,
+          paper, and web UI components.
+        </p>
+        <div class="grid two">
+          <div class="card">
+            <h3>Repository</h3>
+            <p><a href="https://github.com/zabahana/rlhf-failure-modes-diagnostics">github.com/zabahana/rlhf-failure-modes-diagnostics</a></p>
+          </div>
+          <div class="card">
+            <h3>Live Diagnostic UI</h3>
+            <p><a href="https://rlhf-failures.zelalem.ai/">rlhf-failures.zelalem.ai</a></p>
+          </div>
+        </div>
+        <pre><code>pip install -r requirements.txt
+PYTHONPATH=src python web_ui/app.py
+PYTHONPATH=src python scripts/make_paper_tables_and_plots.py</code></pre>
+      </div>
+    </section>
+
+    <section id="citation">
+      <div class="container">
+        <h2 class="section-title">Citation</h2>
+        <pre><code>@misc{abahana2026whenrlhffails,
+  title         = {When RLHF Fails: A Mechanistic Taxonomy of Reward Hacking, Collapse, and Judge Disagreement},
+  author        = {Abahana, Zelalem and Evans, David and Srinivasan, Satish Mahadevan and Gams, Matja{\v{z}} and Teklu, Henok and Jarachi, Youssef},
+  year          = {2026},
+  eprint        = {2606.03238},
+  archivePrefix = {arXiv},
+  note          = {Code and demo available at https://github.com/zabahana/rlhf-failure-modes-diagnostics}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Project website for <em>When RLHF Fails</em>. Built as a static GitHub Pages page.</p>
+    </div>
+  </footer>
+</body>
+</html>
